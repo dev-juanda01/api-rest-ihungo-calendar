@@ -22,12 +22,14 @@ from rest_framework_simplejwt.views import (
 )
 from apps.users.permissions import Login, Logout
 from apps.tasks.api.api_views import user_task_api_view
+from apps.users.api.api_views import active_users_api_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', Login.as_view(), name='login'),
     path('logout/', Logout.as_view(), name='logout'),
     path('api/', include('apps.users.api.routers')),
+    path('api/users/actives', active_users_api_view),
     path('api/', include('apps.tasks.api.routers')),
     path('api/tasks/user/<int:user_id>', user_task_api_view),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
